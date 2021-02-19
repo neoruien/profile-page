@@ -1,0 +1,16 @@
+.post {
+  background: white;
+  border-radius: 5%;
+  border-style: solid;
+  border-color: #f0f0f0;
+  border-width: 2px;
+  width: 360px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.postbody {
+  font-size: 14px;
+  color: #b0b0b0;
+}

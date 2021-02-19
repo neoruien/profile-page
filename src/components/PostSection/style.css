@@ -1,0 +1,10 @@
+.postcontainer::-webkit-scrollbar {
+  display: none;
+}
+
+.postcontainer {
+  padding: 0px;
+  overflow-y: scroll;
+  max-height: 430px;
+  flex: 1;
+}
