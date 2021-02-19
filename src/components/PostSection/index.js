@@ -19,9 +19,6 @@ export default class PostSection extends React.Component {
     }
 
     render() {
-
-        const userName = this.state.posts.name;
-
             return (
                 <div style={{
                     display: 'flex',
