@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import PostList from './components/PostList';
-import PostInput from './components/PostInput';
 import ProfileSection from './components/ProfileSection';
 import PostSection from './components/PostSection';
 
