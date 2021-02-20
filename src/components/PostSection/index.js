@@ -17,9 +17,19 @@ export default class PostSection extends React.Component {
             console.log(res);
             this.setState({posts: res.data});
         });
+
+        axios.get(`https://jsonplaceholder.typicode.com/users/1`).then(res => {
+            console.log(res);
+            this.setState({username: res.data.name});
+        });
     }
 
     render() {
+
+        const firstName = this.state.username.split(" ")[0];
+
+        const numPosts = this.state.posts.length;
+
             return (
                 <div style={{
                     display: 'flex',
@@ -29,8 +39,8 @@ export default class PostSection extends React.Component {
                 }}>
                     <Card>
                         <TextBox>
-                            <p className="title">Leanne's Posts</p>
-                            <p className="subtitle">{this.state.posts.length} POSTS</p>
+                            <p className="title">{firstName}'s Posts</p>
+                            <p className="subtitle">{numPosts} POSTS</p>
                             <div className="postcontainer">
                                 {this.state.posts.map(post => <div key={post.id}>
                                     <Post>
