@@ -14,6 +14,6 @@
 2. Add UI to allow us to switch between users in the list
 3. Host the website for preview [[Live website link]](https://neoruien.github.io/profile-page/)
 
-## Time spend on the assignment
+## Time spent on the assignment
 
 I spend 1.5 days on the assignment. Most of the time was spent on integrating Axios API into the application.
