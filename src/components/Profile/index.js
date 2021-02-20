@@ -7,8 +7,9 @@ import CategoryPng from './category.png';
 import ShopSvg from './shop.svg';
 import TextBox from '../TextBox';
 import axios from 'axios';
+import Post from '../Post';
 
-export default class ProfileSection extends React.Component {
+export default class Profile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -24,16 +25,22 @@ export default class ProfileSection extends React.Component {
         userinfo: [],
         userCompanyInfo: [],
         userAddressInfo: [],
-        value: "1"
+        value: "1",
+        posts: []
     };
 
     getAllUserInfo(userid) {
         axios.get(`https://jsonplaceholder.typicode.com/users/${userid}`).then(res => {
-                console.log(res);
-                this.setState({userinfo: res.data});
-                this.setState({userCompanyInfo: res.data.company});
-                this.setState({userAddressInfo: res.data.address});
-            });
+            console.log(res);
+            this.setState({userinfo: res.data});
+            this.setState({userCompanyInfo: res.data.company});
+            this.setState({userAddressInfo: res.data.address});
+        });
+
+        axios.get(`https://jsonplaceholder.typicode.com/posts?userId=${userid}`).then(res => {
+            console.log(res);
+            this.setState({posts: res.data});
+        });
     };
 
     componentDidMount() {
@@ -51,6 +58,10 @@ export default class ProfileSection extends React.Component {
         const address = ("" + this.state.userAddressInfo.street + ", "
             + this.state.userAddressInfo.suite + ", "
             + this.state.userAddressInfo.city);
+
+        const firstName = ("" + userName).split(" ")[0];
+
+        const numPosts = this.state.posts.length;
 
         return (
             <div style={{
@@ -88,7 +99,20 @@ export default class ProfileSection extends React.Component {
                         </div>
                     </TextBox>
                 </Card>
-    
+                <Card>
+                    <TextBox>
+                        <p className="title">{firstName}'s Posts</p>
+                        <p className="subtitle">{numPosts} POSTS</p>
+                        <div className="postcontainer">
+                            {this.state.posts.map(post => <div key={post.id}>
+                                <Post>
+                                    {post.title}
+                                    <p className="postbody">{post.body}</p>
+                                </Post>
+                            </div>)}
+                        </div>
+                    </TextBox>
+                </Card>
             </div>
         )
     }

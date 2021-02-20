@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import ProfileSection from './components/ProfileSection';
-import PostSection from './components/PostSection';
+import Profile from './components/Profile';
 
 class App extends Component {
 
@@ -13,8 +12,7 @@ class App extends Component {
           alignItems: 'center',
           justifyContent: 'center'
         }}>
-          <ProfileSection />
-          <PostSection />
+          <Profile />
       </div>
     )
   }
