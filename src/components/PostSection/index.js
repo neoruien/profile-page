@@ -8,6 +8,7 @@ import axios from 'axios';
 export default class PostSection extends React.Component {
     
     state = {
+        username: "",
         posts: []
     }
 
@@ -29,7 +30,7 @@ export default class PostSection extends React.Component {
                     <Card>
                         <TextBox>
                             <p className="title">Leanne's Posts</p>
-                            <p className="subtitle">10 POSTS</p>
+                            <p className="subtitle">{this.state.posts.length} POSTS</p>
                             <div className="postcontainer">
                                 {this.state.posts.map(post => <div key={post.id}>
                                     <Post>
