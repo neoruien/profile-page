@@ -11,13 +11,17 @@ import axios from 'axios';
 export default class ProfileSection extends React.Component {
     
     state = {
-        userinfo: []
+        userinfo: [],
+        userCompanyInfo: [],
+        userAddressInfo: []
     }
 
     componentDidMount() {
         axios.get(`https://jsonplaceholder.typicode.com/users/1`).then(res => {
             console.log(res);
             this.setState({userinfo: res.data});
+            this.setState({userCompanyInfo: res.data.company});
+            this.setState({userAddressInfo: res.data.address});
         });
     }
 
@@ -27,11 +31,11 @@ export default class ProfileSection extends React.Component {
 
         const phoneNumber = ("" + this.state.userinfo.phone).split(" ")[0];
 
-        const categories = ("" + this.state.userinfo.company?.bs).split(" ").join(" • ");
+        const categories = ("" + this.state.userCompanyInfo.bs).split(" ").join(" • ");
 
-        const address = ("" + this.state.userinfo.address?.street + ", "
-            + this.state.userinfo.address?.suite + ", "
-            + this.state.userinfo.address?.city);
+        const address = ("" + this.state.userAddressInfo.street + ", "
+            + this.state.userAddressInfo.suite + ", "
+            + this.state.userAddressInfo.city);
 
         return (
             <div style={{
