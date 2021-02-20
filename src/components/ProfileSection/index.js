@@ -47,20 +47,18 @@ export default class ProfileSection extends React.Component {
                 <Card>
                     <img src={DecorImage} alt="Decoration" width="450" />
                     <TextBox>
-                        <div class="row">
-                            <p className="title">{userName}</p>
-                        </div>
-                        <div class="row">
+                        <p className="title">{userName}</p>
+                        <div className="row">
                             <img src={PhoneSvg} alt="Phone" width="25" />
                             <span> </span>
                             {phoneNumber}
                         </div>
-                        <div class="row">
+                        <div className="row">
                             <img src={CategoryPng} alt="Category" width="25" />
                             <span> </span>
                             {categories}
                         </div>
-                        <div class="row">
+                        <div className="row">
                             <img src={ShopSvg} alt="Shop" width="25" />
                             <span> </span>
                             {address}
