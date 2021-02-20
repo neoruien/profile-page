@@ -9,20 +9,35 @@ import TextBox from '../TextBox';
 import axios from 'axios';
 
 export default class ProfileSection extends React.Component {
-    
+
+    constructor(props) {
+        super(props);
+        this.getAllUserInfo = this.getAllUserInfo.bind(this);
+    }
+
+    handleChange = event => {
+        this.setState({value: event.target.value});
+        this.getAllUserInfo(event.target.value);
+    }
+
     state = {
         userinfo: [],
         userCompanyInfo: [],
-        userAddressInfo: []
-    }
+        userAddressInfo: [],
+        value: "1"
+    };
+
+    getAllUserInfo(userid) {
+        axios.get(`https://jsonplaceholder.typicode.com/users/${userid}`).then(res => {
+                console.log(res);
+                this.setState({userinfo: res.data});
+                this.setState({userCompanyInfo: res.data.company});
+                this.setState({userAddressInfo: res.data.address});
+            });
+    };
 
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users/1`).then(res => {
-            console.log(res);
-            this.setState({userinfo: res.data});
-            this.setState({userCompanyInfo: res.data.company});
-            this.setState({userAddressInfo: res.data.address});
-        });
+        this.getAllUserInfo(1);
     }
 
     render() {
@@ -46,6 +61,14 @@ export default class ProfileSection extends React.Component {
             }}>
                 <Card>
                     <img src={DecorImage} alt="Decoration" width="450" />
+                    <div className="topright">
+                        <span>User: </span>
+                        <select value={this.state.value} onChange={this.handleChange}>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
                     <TextBox>
                         <p className="title">{userName}</p>
                         <div className="row">
